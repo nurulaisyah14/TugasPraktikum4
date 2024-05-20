@@ -7,7 +7,8 @@
 
 # Soal Latihan Praktikum ( Pegawai )
 
-![alt text](Screenshot/TugasPraktikumP.png)
+![image](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/914ad61d-7c8d-4f9c-b2f0-9a7597e5532b)
+
 
 **Perintah SQL :**
 
