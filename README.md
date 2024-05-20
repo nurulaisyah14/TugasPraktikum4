@@ -6,6 +6,20 @@
 |Nurul Aisyah|312310476|TI.23.A5|Basis Data|# Tugas Praktikum 4 Basis Data
 
 ## Buat Table pegawai dan isi datanya seperti berikut:
+```
+Database changed
+MariaDB [latihan4]> CREATE TABLE pegawai (
+    ->     idpegawai VARCHAR(10) PRIMARY KEY,
+    ->     nama_depan VARCHAR(50),
+    ->     nama_belakang VARCHAR(50),
+    ->     email VARCHAR(100),
+    ->     telepon VARCHAR(15),
+    ->     tgl_kontrak DATE,
+    ->     id_job VARCHAR(10),
+    ->     gaji INT,
+    ->     tunjangan INT
+    -> );
+```
 ![Screenshot 2024-05-20 130022](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/fd805927-4eec-4a30-a20b-c4ccdf4a2ca8)
 
 ### Tugas Praktikum
@@ -19,42 +33,59 @@
 8. Tampilkan gaji terbesar!
 
 #### 1. Tampilkan pegawai yang gajinya bukan 2.000.000 dan 1.250.000 !
-
+```
+select * from pegawai where gaji not in ('2000000', '125
+0000');
+```
 ![image](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/fcc417bf-89dc-42f2-a9c7-427475034d10)
 Penjelasan: Pernyataan ini menampilkan semua kolom dari tabel pegawai untuk pegawai yang gajinya tidak sama dengan 2.000.000 dan 1.250.000. Kondisi NOT IN (2000000, 1250000) memastikan bahwa hanya pegawai dengan gaji selain kedua nilai tersebut yang ditampilkan.
 
 #### 2. Tampilkan pegawai yang tunjangannya NULL!
-
+```
+select * from pegawai WHERE tunjangan IS NULL;
+```
 ![image](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/c73a1f97-55f4-41a2-8979-42d1f1977c79)
 Penjelasan: Pernyataan ini menampilkan semua kolom dari tabel pegawai untuk pegawai yang tidak memiliki tunjangan. Kondisi tunjangan IS NULL digunakan untuk memeriksa nilai NULL dalam kolom tunjangan.
 
 #### 3. Tampilkan pegawai yang tunjangannya tidak NULL!
-
+```
+select * from pegawai where tunjangan is not null;
+```
 ![image](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/1ed82217-89b6-493d-bce7-d718fc9e59f7)
 Penjelasan: Pernyataan ini menampilkan semua kolom dari tabel pegawai untuk pegawai yang memiliki tunjangan. Kondisi tunjangan IS NOT NULL digunakan untuk memeriksa nilai yang bukan NULL dalam kolom tunjangan.
 
 #### 4. Tampilkan/hitung jumlah baris/record tabel pegawai!
-
+```
+SELECT COUNT(*) AS jumlah_pegawai FROM pegawai;
+```
 ![gambar 4 praktikum ok](https://github.com/Akramfarrasanto/Praktikum-4-Basis-Data/assets/115552876/7232b419-97e6-4ef3-bed9-8528897e0bae)
 Penjelasan: Pernyataan ini menghitung jumlah total baris atau record dalam tabel pegawai. Fungsi COUNT(*) mengembalikan jumlah total baris yang ada, dan hasilnya diberi alias jumlah_pegawai.
 
 #### 5. Tampilkan/hitung jumlah total gaji di tabel pegawai!
-
+```
+SELECT SUM(gaji) as jumlah from pegawai;
+```
 ![Screenshot 2024-05-20 130456](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/c8542a73-a8f0-49d7-9b8c-465a9dac7954)
 Penjelasan: Pernyataan ini menghitung jumlah total gaji dari semua pegawai dalam tabel pegawai. Fungsi SUM(gaji) menjumlahkan nilai dalam kolom gaji untuk setiap baris, dan hasilnya diberi alias total_gaji.
 
 #### 6. Tampilkan/hitung rata-rata gaji pegawai!
-
+```
+select avg(gaji) rerata from pegawai;
+```
 ![Screenshot 2024-05-20 130532](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/68b60eee-9ade-4eef-b17f-975d9bafd00f)
 Penjelasan: Pernyataan ini menghitung rata-rata gaji dari semua pegawai dalam tabel pegawai. Fungsi AVG(gaji) mengembalikan nilai rata-rata dari kolom gaji, dan hasilnya diberi alias rata_rata_gaji.
 
 #### 7. Tampilkan gaji terkecil!
-
+```
+select min(gaji) as termurah from pegawai;
+```
 ![Screenshot 2024-05-20 130601](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/4db3c21b-aed2-424c-96e0-17ce0eb8f084)
 Penjelasan: Pernyataan ini menampilkan gaji terkecil di antara semua pegawai dalam tabel pegawai. Fungsi MIN(gaji) mengembalikan nilai terkecil dari kolom gaji, dan hasilnya diberi alias gaji_terkecil.
 
 #### 8. Tampilkan gaji terbesar!
-
+```
+select max(gaji) as termahal from pegawai:
+```
 ![Screenshot 2024-05-20 130627](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/5e81eea3-2295-4f3d-b0d5-c8c3dec36c4b)
 Penjelasan: Pernyataan ini menampilkan gaji terbesar di antara semua pegawai dalam tabel pegawai. Fungsi MAX(gaji) mengembalikan nilai terbesar dari kolom gaji, dan hasilnya diberi alias gaji_terbesar.
 
