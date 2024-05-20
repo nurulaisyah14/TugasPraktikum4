@@ -1,150 +1,329 @@
-# Tugas Praktikum { Pertemuan ke 11 } <img src=https://qph.fs.quoracdn.net/main-qimg-648763cc041459725b62108f4fdf5b91 width="110px" >
+# Tugas Praktikum { Pertemuan ke 11 } <img src=https://logos-download.com/wp-content/uploads/2016/05/MySQL_logo_logotype.png width="130px" >
 
 
 |**Nama**|**NIM**|**Kelas**|**Matkul**|
 |----|---|-----|------|
-|Nurul Aisyah|312310476|TI.23.A5|Basis Data|# Tugas Praktikum 4 Basis Data
+|Nurul Aisyah|312310476|TI.23.A.5|Basis Data|
 
-## Buat Table pegawai dan isi datanya seperti berikut:
-```
-Database changed
-MariaDB [latihan4]> CREATE TABLE pegawai (
-    ->     idpegawai VARCHAR(10) PRIMARY KEY,
-    ->     nama_depan VARCHAR(50),
-    ->     nama_belakang VARCHAR(50),
-    ->     email VARCHAR(100),
-    ->     telepon VARCHAR(15),
-    ->     tgl_kontrak DATE,
-    ->     id_job VARCHAR(10),
-    ->     gaji INT,
-    ->     tunjangan INT
-    -> );
-```
-![Screenshot 2024-05-20 130022](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/fd805927-4eec-4a30-a20b-c4ccdf4a2ca8)
+# Soal Latihan Praktikum ( Pegawai )
 
-### Tugas Praktikum
-1. Tampilkan pegawai yang gajinya bukan 2.000.000 dan 1.250.000 !
-2. Tampilkan pegawai yang tunjangannya NULL!
-3. Tampilkan pegawai yang tunjangannya tidak NULL!
-4. Tampilkan/hitung jumlah baris/record tabel pegawai!
-5. Tampilkan/hitung jumlah total gaji di tabel pegawai!
-6. Tampilkan/hitung rata-rata gaji pegawai!
-7. Tampilkan gaji terkecil!
-8. Tampilkan gaji terbesar!
+![alt text](Screenshot/TugasPraktikumP.png)
 
-#### 1. Tampilkan pegawai yang gajinya bukan 2.000.000 dan 1.250.000 !
-```
-select * from pegawai where gaji not in ('2000000', '125
-0000');
-```
-![image](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/fcc417bf-89dc-42f2-a9c7-427475034d10)
-Penjelasan: Pernyataan ini menampilkan semua kolom dari tabel pegawai untuk pegawai yang gajinya tidak sama dengan 2.000.000 dan 1.250.000. Kondisi NOT IN (2000000, 1250000) memastikan bahwa hanya pegawai dengan gaji selain kedua nilai tersebut yang ditampilkan.
+**Perintah SQL :**
 
-#### 2. Tampilkan pegawai yang tunjangannya NULL!
 ```
-select * from pegawai WHERE tunjangan IS NULL;
-```
-![image](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/c73a1f97-55f4-41a2-8979-42d1f1977c79)
-Penjelasan: Pernyataan ini menampilkan semua kolom dari tabel pegawai untuk pegawai yang tidak memiliki tunjangan. Kondisi tunjangan IS NULL digunakan untuk memeriksa nilai NULL dalam kolom tunjangan.
+CREATE TABLE pegawai (
+    idpegawai VARCHAR(5) PRIMARY KEY,
+    nama_depan VARCHAR(10) NOT NULL,
+    nama_belakang VARCHAR(15) NOT NULL,
+    email VARCHAR(25) UNIQUE KEY,
+    telepon VARCHAR(15),
+    tgl_kontrak DATA,
+    id_job VARCHAR(5),
+    gaji INT,
+    tunjangan INT
+    );
 
-#### 3. Tampilkan pegawai yang tunjangannya tidak NULL!
+INSERT INTO pegawai VALUES
+    ('E001', 'Ferry', 'Gustiawan', 'ferry@yahoo.com', '07117059004', '2005-09-01', 'L0001', 2000000, 500000),
+	('E002', 'Aris', 'Ganiardi', 'aris@yahoo.com', '081312345678', '2006-09-01', 'L0002', 2000000, 200000),
+	('E003', 'Faiz', 'Ahnad', 'faiz@gmail.com', '081367384322', '2006-10-01', 'L0003', 1500000, NULL),
+	('E004', 'Emna', 'Bunton', 'emna@gmail.com', '081363484342', '2006-10-01', 'L0004', 1500000, 9),
+	('E005', 'Mike', 'Scoff', 'mike@plasa.com', '08163454555', '2007-09-01', 'L0005', 1250000, 9),
+	('E006', 'Lincoln', 'Burrows', 'linc@yahoo.com', '08527388432', '2008-09-01', 'L0006', 1750000, NULL);
 ```
-select * from pegawai where tunjangan is not null;
-```
-![image](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/1ed82217-89b6-493d-bce7-d718fc9e59f7)
-Penjelasan: Pernyataan ini menampilkan semua kolom dari tabel pegawai untuk pegawai yang memiliki tunjangan. Kondisi tunjangan IS NOT NULL digunakan untuk memeriksa nilai yang bukan NULL dalam kolom tunjangan.
 
-#### 4. Tampilkan/hitung jumlah baris/record tabel pegawai!
+***Output :***
+
+![alt text]![Screenshot 2024-05-20 134009](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/5447855e-fa88-40db-98cd-4d3c34efd56e)
+
+
+## Tugas Praktikum
+
+**1. Tampilkan pegawai yang gajinya bukan 2.000.000 dan 1.250.000 !**
+
 ```
+SELECT*FROM pegawai WHERE gaji NOT IN (2000000, 1250000);
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 134110](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/00604c68-cdf5-4b67-9254-7457879b8b9a)
+
+
+**2. Tampilkan pegawai yang tunjangannya NULL!**
+
+```
+SELECT*FROM pegawai WHERE tunjangan IS NULL;
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 134155](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/9e6b6df7-d5fe-4fee-af98-deffd3bda3e5)
+
+
+**3. Tampilkan pegawai yang tunjangannya tidak NULL!**
+
+```
+SELECT*FROM pegawai WHERE tunjangan IS NOT NULL;
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 134331](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/62eb668a-e4d0-4fe6-a209-f0a3f00b8470)
+
+
+
+**4. Tampilkan/hitung jumlah baris/record tabel pegawai!**
+
+```
+SELECT COUNT(*) AS jmlh_pegawai FROM pegawai;
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 134417](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/0d6d38be-022b-41f1-b5ed-c5ff012858be)
+
+
+**5. Tampilkan/hitung jumlah total gaji di tabel pegawai!**
+
+```
+SELECT SUM(gaji) AS ttl_gaji FROM pegawai;
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 134453](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/724e2bfd-307e-4df4-a34a-7ad181f2a2a1)
+
+
+**6. Tampilkan/hitung rata-rata gaji pegawai!**
+
+```
+SELECT AVG(gaji) AS mean_gaji FROM pegawai;
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 134536](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/d917e8b6-ff90-4608-a119-70d99e986863)
+
+
+**7. Tampilkan gaji terkecil!**
+
+```
+SELECT MIN(gaji) AS terkecil FROM pegawai;
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 134607](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/dcd5d587-8245-4d31-b27e-2672bd3506bf)
+
+
+**8. Tampilkan gaji terbesar!**
+
+```
+SELECT MAX(gaji) AS terbesar FROM pegawai;
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 134633](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/caa4347c-c5ee-40d4-be42-3826c25fc840)
+
+
+# Soal Latihan Praktikum ( Hewan )
+
+![alt text](Screenshot/TugasPraktikumH.png)
+
+**Perintah SQL :**
+
+```
+CREATE TABLE hewan (
+    id VARCHAR (5) PRIMARY KEY,
+    name VARCHAR (10) NOT NULL,
+    owner VARCHAR (10),
+    species VARCHAR (10),
+    sex enum('M', 'F')
+    );
+
+INSERT INTO hewan VALUES
+    ('p1', 'Puffball', 'Diane', 'Hamster', 'F'),
+    ('p2', 'Claws', 'Gwen', 'Cat', 'M'),
+    ('p3', 'Fluffy', 'Haro 1d', 'Cat', 'F'),
+    ('p4', 'Buffy', 'Haro 1d', 'Dog', 'F'),
+    ('p5', 'Fang', 'Benny', 'Dog', 'M'),
+    ('p6', 'Bowser', 'Diane', 'Dog', 'M'),
+    ('p7', 'Chirpy', 'Gwen', 'Bird', 'F'),
+    ('p8', 'Whistler', 'Gwen', 'Bird', NULL),
+    ('p9', 'Slim', 'Benny', 'Snake', 'M');
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 134743](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/825338e7-435f-4fa0-9835-4fe967ac9d47)
+
+
+## Tugas Praktikum
+
+**1. Tampilkan jumlah hewan yang dimiliki setiap owner.**
+
+```
+SELECT owner, COUNT(*) AS jmlh_hewan FROM hewan GROUP BY owner;
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 134811](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/c81a905f-9ffd-4e5c-a637-1b6dbfbf73c7)
+
+
+**2. Tampilkan jumlah hewan berdasarkan spesies**
+
+```
+SELECT species, COUNT(*) AS jmlh_hewan FROM hewan GROUP BY species;
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 134835](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/e977aa33-b052-4d32-b893-088b562e1171)
+
+
+**3. Tampilkan jumlah hewan berdasarkan jenis kelamin**
+
+```
+SELECT sex, COUNT(*) AS jmlh_hewan FROM hewan GROUP BY sex;
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 134900](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/190eeb6e-6bc0-4a21-a247-968ea89f6b12)
+
+
+**4. Tampilkan jumlah hewan berdasarkan spesies dan jenis kelamin**
+
+```
+SELECT species, sex, COUNT(*) AS jumlah_hewan FROM hewan GROUP BY species, sex;
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 135017](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/e8a4917a-5364-482a-9e86-8a49a5380cb1)
+
+
+**5. Tampilkan jumlah hewan berdasarkan spesis (cat dan dog saja) dan jenis kelamin**
+
+```
+SELECT species, sex, COUNT(*) AS jumlah_hewan FROM hewan WHERE
+species IN ('Cat', 'Dog')
+GROUP BY species, sex;
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 135226](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/2293b1af-5f17-48d8-8fb2-3827fc53fc5e)
+
+
+**6. Tampilkan jumlah hewan berdasarkan jenis kelamin yang diketahui saja**
+
+```
+SELECT sex, COUNT(*) AS jumlah_hewan FROM hewan WHERE sex IS NOT NULL GROUP BY sex;
+```
+
+***Output :***
+
+![Screenshot 2024-05-20 135250](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/a151022b-f2f1-4c7f-a43a-9e655c4550a8)
+
+
+
+## Tulis semua perintah-perintah SQL percobaan di atas beserta outputnya!
+
+```
+CREATE DATABASE praktikum4;
+USE praktikum4;
+CREATE TABLE pegawai (
+    idpegawai VARCHAR (5) PRIMARY KEY,
+    nama_depan VARCHAR (10) NOT NULL,
+    nama_belakang VARCHAR (15) NOT NULL,
+    email VARCHAR (25) UNIQUE KEY,
+    telepon VARCHAR (15),
+    tgl_kontrak DATE,
+    id_job VARCHAR (5),
+    gaji INT,
+    tunjangan INT
+    );
+
+INSERT INTO pegawai VALUES
+    ('E001', 'Ferry', 'Gustiawan', 'ferry@yahoo.com', '07117059004', '2005-09-01', 'L0001', 2000000, 500000),
+	('E002', 'Aris', 'Ganiardi', 'aris@yahoo.com', '081312345678', '2006-09-01', 'L0002', 2000000, 200000),
+	('E003', 'Faiz', 'Ahnad', 'faiz@gmail.com', '081367384322', '2006-10-01', 'L0003', 1500000, NULL),
+	('E004', 'Emna', 'Bunton', 'emna@gmail.com', '081363484342', '2006-10-01', 'L0004', 1500000, 9),
+	('E005', 'Mike', 'Scoff', 'mike@plasa.com', '08163454555', '2007-09-01', 'L0005', 1250000, 9),
+	('E006', 'Lincoln', 'Burrows', 'linc@yahoo.com', '08527388432', '2008-09-01', 'L0006', 1750000, NULL);
+
+SELECT * FROM pegawai;
+
+SELECT * FROM pegawai WHERE gaji NOT IN (2000000, 1250000);
+
+SELECT * FROM pegawai WHERE tunjangan IS NULL;
+
+SELECT * FROM pegawai WHERE tunjangan IS NOT NULL;
+
 SELECT COUNT(*) AS jumlah_pegawai FROM pegawai;
+
+SELECT SUM(gaji) AS total_gaji FROM pegawai;
+
+SELECT AVG(gaji) AS rata_rata_gaji FROM pegawai;
+
+SELECT MIN(gaji) AS gaji_terkecil FROM pegawai;
+
+SELECT MAX(gaji) AS gaji_terbesar FROM pegawai;
+
+CREATE TABLE hewan (
+    id VARCHAR (5) PRIMARY KEY,
+    name VARCHAR (10) NOT NULL,
+    owner VARCHAR (10),
+    species VARCHAR (10),
+    sex enum('M', 'F')
+    );
+
+INSERT INTO hewan (id, name, owner, species, sex)
+VALUES ('p1', 'Puffball', 'Diane', 'Hamster', 'F'),
+       ('p2', 'Claws', 'Gwen', 'Cat', 'M'),
+       ('p3', 'Fluffy', 'Haro 1d', 'Cat', 'F'),
+       ('p4', 'Buffy', 'Haro 1d', 'Dog', 'F'),
+       ('p5', 'Fang', 'Benny', 'Dog', 'M'),
+       ('p6', 'Bowser', 'Diane', 'Dog', 'M'),
+       ('p7', 'Chirpy', 'Gwen', 'Bird', 'F'),
+       ('p8', 'Whistler', 'Gwen', 'Bird', NULL),
+       ('p9', 'Slim', 'Benny', 'Snake', 'M');
+
+SELECT * from hewan;
+
+SELECT owner, COUNT(*) AS jumlah_hewan FROM hewan GROUP BY owner;
+
+SELECT species, COUNT(*) AS jumlah_hewan FROM hewan GROUP BY species;
+
+SELECT sex, COUNT(*) AS jumlah_hewan FROM hewan GROUP BY sex;
+
+SELECT species, sex, COUNT(*) AS jumlah_hewan FROM hewan GROUP BY species, sex;
+
+SELECT species, sex, COUNT(*) AS jumlah_hewan FROM hewan WHERE species IN ('Cat', 'Dog') GROUP BY species, sex;
+
+SELECT sex, COUNT(*) AS jumlah_hewan FROM hewan WHERE sex IS NOT NULL GROUP BY sex;
 ```
-![gambar 4 praktikum ok](https://github.com/Akramfarrasanto/Praktikum-4-Basis-Data/assets/115552876/7232b419-97e6-4ef3-bed9-8528897e0bae)
-Penjelasan: Pernyataan ini menghitung jumlah total baris atau record dalam tabel pegawai. Fungsi COUNT(*) mengembalikan jumlah total baris yang ada, dan hasilnya diberi alias jumlah_pegawai.
 
-#### 5. Tampilkan/hitung jumlah total gaji di tabel pegawai!
-```
-SELECT SUM(gaji) as jumlah from pegawai;
-```
-![Screenshot 2024-05-20 130456](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/c8542a73-a8f0-49d7-9b8c-465a9dac7954)
-Penjelasan: Pernyataan ini menghitung jumlah total gaji dari semua pegawai dalam tabel pegawai. Fungsi SUM(gaji) menjumlahkan nilai dalam kolom gaji untuk setiap baris, dan hasilnya diberi alias total_gaji.
+## Berikan Kesimpulan Anda !
 
-#### 6. Tampilkan/hitung rata-rata gaji pegawai!
-```
-select avg(gaji) rerata from pegawai;
-```
-![Screenshot 2024-05-20 130532](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/68b60eee-9ade-4eef-b17f-975d9bafd00f)
-Penjelasan: Pernyataan ini menghitung rata-rata gaji dari semua pegawai dalam tabel pegawai. Fungsi AVG(gaji) mengembalikan nilai rata-rata dari kolom gaji, dan hasilnya diberi alias rata_rata_gaji.
+Terdapat beberapa ***Query Filter*** yang ditemukan pada tugas praktikum 4 :
 
-#### 7. Tampilkan gaji terkecil!
-```
-select min(gaji) as termurah from pegawai;
-```
-![Screenshot 2024-05-20 130601](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/4db3c21b-aed2-424c-96e0-17ce0eb8f084)
-Penjelasan: Pernyataan ini menampilkan gaji terkecil di antara semua pegawai dalam tabel pegawai. Fungsi MIN(gaji) mengembalikan nilai terkecil dari kolom gaji, dan hasilnya diberi alias gaji_terkecil.
+- Operator `IN` digunakan untuk memfilter data yang terdapat pada list IN
+- Operator `NOT IN` digunakan untuk memfilter data yang tidak terdapat pada list IN
+- Operator `IS NULL` digunakan untuk menampilkan data dengan nilai data NULL
+- Operator `IS NOT NULL` digunakan untuk menampilkan data dengan nilai data tidak NULL
+- `COUNT` adalah perintah yang digunakan untuk menghitung jumlah baris suatu kolom pada tabel.
+- `SUM` adalah perintah yang digunakan untuk menghitung jumlah nilai suatu kolom pada tabel.
+- `AVG` adalah perintah yang digunakan untuk menghitung rata-rata dari nilai suatu kolom pada tabel.
+- `MIN` adalah perintah yang digunakan untuk menampilkan nilai terkecil dari suatu kolom pada tabel.
+- `MAX` adalah perintah yang digunakan untuk menampilkan nilai terbesar dari suatu kolom pada tabel.
+- Klausa `GROUP BY` berfungsi untuk mengelompokkan data berdasarkan field tertentu.
 
-#### 8. Tampilkan gaji terbesar!
-```
-select max(gaji) as termahal from pegawai:
-```
-![Screenshot 2024-05-20 130627](https://github.com/nurulaisyah14/TugasPraktikum4/assets/148174512/5e81eea3-2295-4f3d-b0d5-c8c3dec36c4b)
-Penjelasan: Pernyataan ini menampilkan gaji terbesar di antara semua pegawai dalam tabel pegawai. Fungsi MAX(gaji) mengembalikan nilai terbesar dari kolom gaji, dan hasilnya diberi alias gaji_terbesar.
-
-
-### Kesimpulan
-Dalam MySQL, kita dapat menggunakan query untuk menampilkan jumlah hewan berdasarkan kriteria tertentu. Kesimpulannya adalah:
-
-- Jumlah hewan berdasarkan pemilik (owner): Dengan menggunakan klausa group by antara kolom "owners" dan "id", serta fungsi COUNT, kita dapat menghitung jumlah hewan yang dimiliki oleh setiap pemilik.
-
-- Jumlah hewan berdasarkan spesies: Dengan menggunakan klausa GROUP BY pada kolom "species" dan fungsi COUNT, kita dapat menghitung jumlah hewan untuk setiap spesies.
-
-- Jumlah hewan berdasarkan jenis kelamin: Dengan menggunakan klausa GROUP BY pada kolom "sex" dan fungsi COUNT, kita dapat menghitung jumlah hewan untuk setiap jenis kelamin.
-
-- Jumlah hewan berdasarkan spesies dan jenis kelamin (khusus cat dan dog): Dengan menggunakan klausa WHERE untuk memfilter spesies yang diinginkan dan klausa GROUP BY pada kolom "species" dan "sex" serta fungsi COUNT, kita dapat menghitung jumlah hewan untuk kombinasi spesies dan jenis kelamin tertentu.
-
-- Jumlah hewan berdasarkan jenis kelamin yang diketahui: Dengan menggunakan klausa WHERE untuk memfilter jenis kelamin yang tidak NULL (diketahui) dan klausa GROUP BY pada kolom "sex" serta fungsi COUNT, kita dapat menghitung jumlah hewan untuk jenis kelamin yang diketahui.
-
-Dengan menggunakan query-query ini, kita dapat memperoleh informasi statistik tentang jumlah hewan berdasarkan kriteria yang relevan dalam basis data MySQL.
-
-## Buat table hewan dan isi datanya seperti berikut:
-<img width="371" alt="gambar table hewan" src="https://github.com/Akramfarrasanto/Praktikum-4-Basis-Data/assets/115552876/1aed8694-0460-4c82-83f8-09e7d3e9c2a8">
-
-### Tugas Praktikum
-1. Tampilkan jumlah hewan yang dimiliki setiap owner.
-2. Tampilkan jumlah hewan berdasarkan spesies
-3. Tampilkan jumlah hewan berdasarkan jenis kelamin
-4. Tampilkan jumlah hewan berdasarkan spesies dan jenis kelamin
-5. Tampilkan jumlah hewan berdasarkan spesis (cat dan dog saja) dan jenis kelamin
-6. Tampilkan jumlah hewan berdasarkan jenis kelamin yang diketahui saja
-
-#### 1. Tampilkan jumlah hewan yang dimiliki setiap owner.
-
-<img width="391" alt="gambar 1 hewan" src="https://github.com/Akramfarrasanto/Praktikum-4-Basis-Data/assets/115552876/b127c79e-90d7-4851-856a-986e6b0f23ca">
-
-#### 2. Tampilkan jumlah hewan berdasarkan spesies
-
-<img width="364" alt="gambar 2 hewan" src="https://github.com/Akramfarrasanto/Praktikum-4-Basis-Data/assets/115552876/2caa3c99-d2bb-49e5-8151-eea41518f3c5">
-
-#### 3. Tampilkan jumlah hewan berdasarkan jenis kelamin
-
-<img width="357" alt="gambar 3 hewan" src="https://github.com/Akramfarrasanto/Praktikum-4-Basis-Data/assets/115552876/01d05899-5d4c-4e03-9f2d-141b30105097">
-
-#### 4. Tampilkan jumlah hewan berdasarkan spesies dan jenis kelamin
-
-<img width="448" alt="gambar 4 hewan" src="https://github.com/Akramfarrasanto/Praktikum-4-Basis-Data/assets/115552876/ff18abed-5d71-4073-854e-86f7383026ff">
-
-#### 5. Tampilkan jumlah hewan berdasarkan spesis (cat dan dog saja) dan jenis kelamin
-
-![gambar 5 hewan](https://github.com/Akramfarrasanto/Praktikum-4-Basis-Data/assets/115552876/a757d651-4a26-4354-b066-d1783e3455ef)
-
-#### 6. Tampilkan jumlah hewan berdasarkan jenis kelamin yang diketahui saja
-
-![gambar 6 hewan](https://github.com/Akramfarrasanto/Praktikum-4-Basis-Data/assets/115552876/2b1c31c7-e922-4da6-abcd-90a29c98c3be)
-
-### Kesimpulan
-#### Dalam MySQL, kita dapat menggunakan query untuk menampilkan jumlah hewan berdasarkan kriteria tertentu. Kesimpulannya adalah:
-#### - Jumlah hewan berdasarkan pemilik (owner): Dengan menggunakan klausa group by antara kolom "owners" dan "id", serta fungsi COUNT, kita dapat menghitung jumlah hewan yang dimiliki oleh setiap pemilik.
-#### - Jumlah hewan berdasarkan spesies: Dengan menggunakan klausa GROUP BY pada kolom "species" dan fungsi COUNT, kita dapat menghitung jumlah hewan untuk setiap spesies.
-#### - Jumlah hewan berdasarkan jenis kelamin: Dengan menggunakan klausa GROUP BY pada kolom "sex" dan fungsi COUNT, kita dapat menghitung jumlah hewan untuk setiap jenis kelamin.
-#### - Jumlah hewan berdasarkan spesies dan jenis kelamin (khusus cat dan dog): Dengan menggunakan klausa WHERE untuk memfilter spesies yang diinginkan dan klausa GROUP BY pada kolom "species" dan "sex" serta fungsi COUNT, kita dapat menghitung jumlah hewan untuk kombinasi spesies dan jenis kelamin tertentu.
+## FINISH <img align="center" alt="Ikhsan-Python" height="40" width="45" src="https://em-content.zobj.net/source/microsoft-teams/337/student_1f9d1-200d-1f393.png"> <img align="center" alt="Ikhsan-Python" height="40" width="45" src="https://em-content.zobj.net/thumbs/160/twitter/348/flag-indonesia_1f1ee-1f1e9.png">kombinasi spesies dan jenis kelamin tertentu.
 #### - Jumlah hewan berdasarkan jenis kelamin yang diketahui: Dengan menggunakan klausa WHERE untuk memfilter jenis kelamin yang tidak NULL (diketahui) dan klausa GROUP BY pada kolom "sex" serta fungsi COUNT, kita dapat menghitung jumlah hewan untuk jenis kelamin yang diketahui.
 #### Dengan menggunakan query-query ini, kita dapat memperoleh informasi statistik tentang jumlah hewan berdasarkan kriteria yang relevan dalam basis data MySQL.
